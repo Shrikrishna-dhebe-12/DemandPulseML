@@ -1,0 +1,22 @@
+artifact_path: file:C:/Users/Harish/Desktop/DEMANDPULSE/mlruns/1/models/m-e20eb713d5aa4e22ad9faeefe7b60100/artifacts
+flavors:
+  python_function:
+    data: model.ubj
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.14.2
+  xgboost:
+    code: null
+    data: model.ubj
+    model_class: xgboost.sklearn.XGBRegressor
+    model_format: ubj
+    xgb_version: 3.3.0
+mlflow_version: 3.15.1
+model_id: m-e20eb713d5aa4e22ad9faeefe7b60100
+model_size_bytes: 988964
+model_uuid: m-e20eb713d5aa4e22ad9faeefe7b60100
+prompts: null
+run_id: 7de5fe7dd1fc44a789188a9f286d53e9
+utc_time_created: '2026-08-16 14:10:17.476461'

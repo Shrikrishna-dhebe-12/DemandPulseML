@@ -1,0 +1,23 @@
+artifact_path: file:C:/Users/Harish/Desktop/DEMANDPULSE/mlruns/1/models/m-cc73d07555f545c2afc5c47dd99ba6ed/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.skops
+    predict_fn: predict
+    python_version: 3.14.2
+  sklearn:
+    code: null
+    pickled_model: model.skops
+    serialization_format: skops
+    sklearn_version: 1.8.0
+    skops_trusted_types: null
+mlflow_version: 3.15.1
+model_id: m-cc73d07555f545c2afc5c47dd99ba6ed
+model_size_bytes: 17419
+model_uuid: m-cc73d07555f545c2afc5c47dd99ba6ed
+prompts: null
+run_id: 8b14a6688b214796abebe8298dcc2a97
+utc_time_created: '2026-08-16 14:04:15.457092'

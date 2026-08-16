@@ -1,0 +1,27 @@
+artifact_path: file:C:/Users/Harish/Desktop/DEMANDPULSE/mlruns/1/models/m-32988dff409b490c8f5f7144f55f52c4/artifacts
+flavors:
+  lightgbm:
+    code: null
+    data: model.skops
+    lgb_version: 4.6.0
+    model_class: lightgbm.sklearn.LGBMRegressor
+    serialization_format: skops
+    skops_trusted_types:
+    - lightgbm.sklearn.LGBMRegressor
+    - collections.OrderedDict
+    - lightgbm.sklearn.LGBMClassifier
+    - lightgbm.basic.Booster
+  python_function:
+    data: model.skops
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.lightgbm
+    python_version: 3.14.2
+mlflow_version: 3.15.1
+model_id: m-32988dff409b490c8f5f7144f55f52c4
+model_size_bytes: 561389
+model_uuid: m-32988dff409b490c8f5f7144f55f52c4
+prompts: null
+run_id: 7ad38d8de1d84dcb8d08995797493a90
+utc_time_created: '2026-08-16 14:12:01.097492'
