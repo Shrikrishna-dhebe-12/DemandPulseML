@@ -1,0 +1,5 @@
+outs:
+- md5: dde5c9e240435b3af066f4f024138ad7
+  size: 115207
+  hash: md5
+  path: amazon_multi_product_demand.csv
