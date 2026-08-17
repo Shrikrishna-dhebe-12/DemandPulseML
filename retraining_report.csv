@@ -1,0 +1,2 @@
+new_model_mae,new_model_mse,new_model_rmse,new_model_r2,current_model_mae,drift_detected,selected_model
+4.115635112991505,51.10940417180397,7.149084149162323,0.9950754021333803,,False,retrained

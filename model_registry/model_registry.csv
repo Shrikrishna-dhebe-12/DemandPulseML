@@ -1,0 +1,2 @@
+version,created_at,model_type,mae,mse,rmse,r2,drift_detected,selected_model,model_path
+v1,2026-08-17 20:12:54,RandomForestRegressor,4.115635112991505,51.10940417180397,7.149084149162323,0.9950754021333804,False,retrained,model_registry\v1\model.pkl

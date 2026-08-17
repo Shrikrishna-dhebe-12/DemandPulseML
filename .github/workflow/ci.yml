@@ -1,37 +1,172 @@
-name: DemandPulse CI
+name: DemandPulse CI/CD
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
 
-  build:
+  # ==========================================================
+  # JOB 1 : PYTHON TESTING
+  # ==========================================================
+
+  test:
+
+    name: Test DemandPulse
 
     runs-on: ubuntu-latest
 
     steps:
 
-      - name: Checkout Repository
+      # --------------------------------------------------------
+      # 1. Checkout Repository
+      # --------------------------------------------------------
+
+      - name: Checkout repository
         uses: actions/checkout@v4
+
+
+      # --------------------------------------------------------
+      # 2. Setup Python
+      # --------------------------------------------------------
 
       - name: Setup Python
         uses: actions/setup-python@v5
+
         with:
           python-version: "3.11"
 
-      - name: Install Dependencies
+
+      # --------------------------------------------------------
+      # 3. Install Dependencies
+      # --------------------------------------------------------
+
+      - name: Install dependencies
         run: |
+
           python -m pip install --upgrade pip
+
           pip install -r requirements.txt
 
-      - name: Check Python Syntax
-        run: |
-          python -m py_compile app.py
 
-      - name: Build Docker Image
+      # --------------------------------------------------------
+      # 4. Verify Python Files
+      # --------------------------------------------------------
+
+      - name: Python syntax check
         run: |
-          docker build -t demandpulse-api .
+
+          python -m compileall .
+
+
+      # --------------------------------------------------------
+      # 5. Check Required Files
+      # --------------------------------------------------------
+
+      - name: Check project files
+        run: |
+
+          test -f app.py
+          test -f train_model.py
+          test -f requirements.txt
+          test -f Dockerfile
+
+          echo "Required project files verified."
+
+
+      # --------------------------------------------------------
+      # 6. Test Model Loading
+      # --------------------------------------------------------
+
+      - name: Test model loading
+        run: |
+
+          python -c "
+          import joblib
+          model = joblib.load('demandpulse_best_model.pkl')
+          print('Model loaded successfully')
+          print('Model type:', type(model).__name__)
+          "
+
+
+  # ==========================================================
+  # JOB 2 : DOCKER BUILD
+  # ==========================================================
+
+  docker:
+
+    name: Docker Build Test
+
+    runs-on: ubuntu-latest
+
+    needs:
+      - test
+
+    steps:
+
+      # --------------------------------------------------------
+      # 1. Checkout Repository
+      # --------------------------------------------------------
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+
+      # --------------------------------------------------------
+      # 2. Build Docker Image
+      # --------------------------------------------------------
+
+      - name: Build Docker image
+        run: |
+
+          docker build \
+            -t demandpulse-api:latest \
+            .
+
+
+      # --------------------------------------------------------
+      # 3. Verify Docker Image
+      # --------------------------------------------------------
+
+      - name: Verify Docker image
+        run: |
+
+          docker images demandpulse-api
+
+          echo "Docker image built successfully."
+
+
+  # ==========================================================
+  # JOB 3 : CI/CD STATUS
+  # ==========================================================
+
+  pipeline-status:
+
+    name: Pipeline Status
+
+    runs-on: ubuntu-latest
+
+    needs:
+      - test
+      - docker
+
+    steps:
+
+      - name: Pipeline completed
+        run: |
+
+          echo "======================================"
+          echo "DemandPulse CI/CD Pipeline"
+          echo "======================================"
+
+          echo "Python tests       : PASSED"
+          echo "Model loading      : PASSED"
+          echo "Docker build       : PASSED"
+          echo "Pipeline status    : SUCCESS"
+
+          echo "======================================"

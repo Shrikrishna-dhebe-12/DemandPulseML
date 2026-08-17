@@ -1,0 +1,6 @@
+{
+    "production_version": "v1",
+    "updated_at": "2026-08-17 20:12:54",
+    "model_path": "model_registry\\v1\\model.pkl",
+    "status": "production"
+}
