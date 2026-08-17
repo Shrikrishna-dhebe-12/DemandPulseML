@@ -582,5 +582,4 @@ STATUS: Production-Ready Project
 If you find this project useful, consider giving the repository a ⭐.
 
 ```
-include केलं आहे.
 ```
