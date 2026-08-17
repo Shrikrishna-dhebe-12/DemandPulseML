@@ -1,0 +1,46 @@
+stages:
+
+  prepare:
+    cmd: python data_preparation.py
+    deps:
+      - amazon_multi_product_demand.csv
+      - data_preparation.py
+    outs:
+      - cleaned_demand_data.csv
+
+  features:
+    cmd: python feature_engineering.py
+    deps:
+      - cleaned_demand_data.csv
+      - feature_engineering.py
+    outs:
+      - demandpulse_features.csv
+
+  split:
+    cmd: python data_split.py
+    deps:
+      - demandpulse_features.csv
+      - data_split.py
+    outs:
+      - X_train.csv
+      - y_train.csv
+      - X_validation.csv
+      - y_validation.csv
+      - X_test.csv
+      - y_test.csv
+
+  train:
+    cmd: python model_training.py
+    deps:
+      - X_train.csv
+      - y_train.csv
+      - X_validation.csv
+      - y_validation.csv
+      - X_test.csv
+      - y_test.csv
+      - model_training.py
+    outs:
+      - demandpulse_best_model.pkl
+      - model_metadata.pkl
+      - model_comparison.csv
+      - test_predictions.csv
