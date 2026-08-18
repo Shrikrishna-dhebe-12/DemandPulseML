@@ -462,6 +462,9 @@ Final Validation             ✅
 ---
 ---
 
+<img width="1740" height="881" alt="image" src="https://github.com/user-attachments/assets/f2391cfe-f2b6-4f92-94ba-1dcdd2557527" />
+
+
 # 🚀 Run Locally
 
 ## 1. Clone Repository
@@ -581,5 +584,3 @@ STATUS: Production-Ready Project
 
 If you find this project useful, consider giving the repository a ⭐.
 
-```
-```
